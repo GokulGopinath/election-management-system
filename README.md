@@ -22,6 +22,8 @@ Voting
 ![image](https://user-images.githubusercontent.com/44446309/87151387-5d731d00-c2d1-11ea-979c-36c1fdf33c1d.png)
 State of candidate table after voting:
 ![image](https://user-images.githubusercontent.com/44446309/87151495-9612f680-c2d1-11ea-9b60-102e1ec23414.png)
+State of candidate table after voting:
+![image](https://user-images.githubusercontent.com/44446309/87151887-42ed7380-c2d2-11ea-8915-9873b2616473.png)
 
 
 
