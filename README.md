@@ -51,6 +51,41 @@ State of candidate table after voting:
 
 ![image](https://user-images.githubusercontent.com/44446309/87151887-42ed7380-c2d2-11ea-8915-9873b2616473.png)
 
+Admin login:
+
+![image](https://user-images.githubusercontent.com/44446309/87219385-286dd580-c378-11ea-95df-c5feb4d648d7.png)
+
+Admin page:
+
+![image](https://user-images.githubusercontent.com/44446309/87219398-45a2a400-c378-11ea-9cef-722651ce8c0e.png)
+
+Display result:
+
+![image](https://user-images.githubusercontent.com/44446309/87219410-6ff46180-c378-11ea-8dee-7482aa9775c1.png)
+
+After clicking start election:
+The voters table is deleted
+
+The state of candidate table:(The votes of candidate set to 0)
+
+![image](https://user-images.githubusercontent.com/44446309/87220205-910c8080-c37f-11ea-9eb5-2f4a2d6256a5.png)
+
+After clicking Edit Candidate name:
+
+![image](https://user-images.githubusercontent.com/44446309/87220484-c6b26900-c381-11ea-8788-f7c8f1384464.png)
+
+Changes in the Candidate table:
+
+![image](https://user-images.githubusercontent.com/44446309/87220504-fa8d8e80-c381-11ea-88c7-2d8671cc73bf.png)
+
+Changes in the voting page for the voters:
+
+The names are fetched from the candidate table:
+
+![image](https://user-images.githubusercontent.com/44446309/87220843-121a4680-c385-11ea-8126-29407172c59d.png)
+
+
+
 
 
 
