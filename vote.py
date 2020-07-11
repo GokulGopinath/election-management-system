@@ -91,6 +91,25 @@ class Toplevel1:
     def count4(self):
         self.count=4  #if the voter selected first candidate then count=4
             
+    def candidate_name(self):
+        db = sqlite3.connect('castyourvote.db')
+        print("hi")
+            
+            
+        with db:
+            cursor = db.cursor()
+        cursor.execute("select candidate_name from vote")
+        content = cursor.fetchall()
+        print(content)
+
+        print(content[0][0],content[1][0],len(content))
+        
+        
+        db.commit()
+    
+        return content
+    
+
         
 
             
@@ -102,6 +121,11 @@ class Toplevel1:
  #----------------------------------------------------------------------------------
 
     def __init__(self, top=None):
+
+
+
+        
+        self.k=self.candidate_name()
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -112,8 +136,8 @@ class Toplevel1:
         font9 = "-family {Segoe UI} -size 9"
 
         top.geometry("566x555+385+139")
-        top.title("New Toplevel")
-        top.configure(background="#d9d9d9")
+        top.title("Vote page")
+        top.configure(background="#cc66ff")
         top.configure(highlightbackground="#d9d9d9")
         top.configure(highlightcolor="black")
 
@@ -128,8 +152,8 @@ class Toplevel1:
         self.Frame1.configure(relief='groove')
         self.Frame1.configure(borderwidth="2")
         self.Frame1.configure(relief='groove')
-        self.Frame1.configure(background="#d9d9d9")
-        self.Frame1.configure(highlightbackground="#d9d9d9")
+        self.Frame1.configure(background="#CD5C5C")
+        self.Frame1.configure(highlightbackground="#CD5C5C")
         self.Frame1.configure(highlightcolor="black")
         self.Frame1.configure(width=425)
 
@@ -143,7 +167,7 @@ class Toplevel1:
         self.Label2.configure(foreground="#000000")
         self.Label2.configure(highlightbackground="#d9d9d9")
         self.Label2.configure(highlightcolor="black")
-        self.Label2.configure(text='''Chetan Mukharjee''')
+        self.Label2.configure(text=self.candidate_name()[0][0])
 
         self.Label3 = tk.Label(self.Frame1)
         self.Label3.place(relx=0.094, rely=0.307, height=31, width=144)
@@ -155,7 +179,7 @@ class Toplevel1:
         self.Label3.configure(foreground="#000000")
         self.Label3.configure(highlightbackground="#d9d9d9")
         self.Label3.configure(highlightcolor="black")
-        self.Label3.configure(text='''Saurabh Shukla''')
+        self.Label3.configure(text=self.candidate_name()[1][0])
 
         self.Label4 = tk.Label(self.Frame1)
         self.Label4.place(relx=0.071, rely=0.493, height=31, width=158)
@@ -167,7 +191,7 @@ class Toplevel1:
         self.Label4.configure(foreground="#000000")
         self.Label4.configure(highlightbackground="#d9d9d9")
         self.Label4.configure(highlightcolor="black")
-        self.Label4.configure(text='''Sanchit Goyal''')
+        self.Label4.configure(text=self.candidate_name()[2][0])
 
         self.Label5 = tk.Label(self.Frame1)
         self.Label5.place(relx=0.094, rely=0.653, height=31, width=146)
@@ -179,7 +203,7 @@ class Toplevel1:
         self.Label5.configure(foreground="#000000")
         self.Label5.configure(highlightbackground="#d9d9d9")
         self.Label5.configure(highlightcolor="black")
-        self.Label5.configure(text='''Harminder Singh''')
+        self.Label5.configure(text=self.candidate_name()[3][0])
 
         self.Radiobutton1 = tk.Radiobutton(self.Frame1)
         self.Radiobutton1.place(relx=0.6, rely=0.133, relheight=0.093
@@ -253,7 +277,7 @@ class Toplevel1:
         self.Label1.place(relx=0.115, rely=0.09, height=41, width=431)
         self.Label1.configure(activebackground="#f9f9f9")
         self.Label1.configure(activeforeground="black")
-        self.Label1.configure(background="#d9d9d9")
+        self.Label1.configure(background="#ffff00")
         self.Label1.configure(disabledforeground="#a3a3a3")
         self.Label1.configure(font="-family {Arial} -size 28 -weight bold")
         self.Label1.configure(foreground="#000000")

@@ -72,8 +72,8 @@ class Toplevel1:
         font14 = "-family {Calibri} -size 14 -weight bold"
 
         top.geometry("730x312+215+141")
-        top.title("New Toplevel")
-        top.configure(background="#d9d9d9")
+        top.title("Start Page")
+        top.configure(background="#cc66ff") #----
 
         self.Frame1 = tk.Frame(top)
         self.Frame1.place(relx=0.137, rely=0.321, relheight=0.625
@@ -81,7 +81,7 @@ class Toplevel1:
         self.Frame1.configure(relief='groove')
         self.Frame1.configure(borderwidth="2")
         self.Frame1.configure(relief='groove')
-        self.Frame1.configure(background="#d9d9d9")
+        self.Frame1.configure(background="#CD5C5C") #------
         self.Frame1.configure(width=525)
 
         self.Button1 = tk.Button(self.Frame1)
@@ -117,7 +117,9 @@ class Toplevel1:
 
         self.Label1 = tk.Label(top)
         self.Label1.place(relx=0.014, rely=0.096, height=61, width=714)
-        self.Label1.configure(background="#d9d9d9")
+        #self.Label1.configure(background="#d9d9d9")
+        self.Label1.configure(background="#ffff00") #-----------
+        #CD5C5C
         self.Label1.configure(disabledforeground="#a3a3a3")
         self.Label1.configure(font=font13)
         self.Label1.configure(foreground="#000000")

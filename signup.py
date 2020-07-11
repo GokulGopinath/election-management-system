@@ -10,6 +10,7 @@ import sys
 import sqlite3
 from tkinter import *
 import os
+import re #For regex
 
 from tkinter import messagebox
 
@@ -75,29 +76,39 @@ class Toplevel1:
         username1 =self.unm.get()
         password1 =self.password.get()
         mobile =self.mob.get()
-
-
-       # with sqlite3.connect("election.sqlite") as db:
-        with db:
-            cursor = db.cursor()
-       # cursor.execute('CREATE TABLE IF NOT EXISTS voter(name varchar(255) NOT NULL,u_name varchar(255) NOT NULL,password varchar(255) NOT NULL,Mobile_no int)')
-        #try:
-        cursor.execute("SELECT *FROM  voter WHERE u_name=?",(username1,))
-        #note the coma after username1 above.it is to make it a tuple
-        data=cursor.fetchall()
-        if data:
-             messagebox.showerror("ERROR","USERNAME ALREADY EXISTS")
-        else:
-            cursor.execute('INSERT INTO voter(name ,u_name,password,Mobile_no,counter) VALUES(? ,? ,? , ?,0)',(name1,username1, password1, mobile,))
-            global root
-            root.destroy()
+        x= re.search("^[1-9]{2}[0-9]{8}$", mobile)  #regex for checking mobile no.
+        if not(name1) or not(username1) or not(password1) or not(mobile):
+            messagebox.showerror("ERROR","Please fillup the details and then submit")
             
-            filename='python startpage.py'
-            os.system(filename)
-        #except Exception:
-       #     tkMessageBox.showerror('Error', 'Error while connecting sqlite')
+        elif x:
 
-        db.commit()
+
+           # with sqlite3.connect("election.sqlite") as db:
+            with db:
+                cursor = db.cursor()
+           # cursor.execute('CREATE TABLE IF NOT EXISTS voter(name varchar(255) NOT NULL,u_name varchar(255) NOT NULL,password varchar(255) NOT NULL,Mobile_no int)')
+            #try:
+            cursor.execute("SELECT *FROM  voter WHERE u_name=?",(username1,))
+            #note the coma after username1 above.it is to make it a tuple
+            data=cursor.fetchall()
+            if data:
+                 messagebox.showerror("ERROR","USERNAME ALREADY EXISTS")
+            else:
+                cursor.execute('INSERT INTO voter(name ,u_name,password,Mobile_no,counter) VALUES(? ,? ,? , ?,0)',(name1,username1, password1, mobile,))
+                db.commit()
+                global root
+                root.destroy()
+                
+                filename='python startpage.py'
+                os.system(filename)
+            #except Exception:
+            #     tkMessageBox.showerror('Error', 'Error while connecting sqlite')
+           
+
+        else:
+            messagebox.showerror("ERROR","Please Enter a valid Mobile No.")
+            
+        
 
     def __init__(self, top=None):
         '''This class configures and populates the toplevel window.
@@ -112,8 +123,8 @@ class Toplevel1:
         _ana2color = '#ececec' # Closest X11 color: 'gray92'
 
         top.geometry("600x450+391+160")
-        top.title("New Toplevel")
-        top.configure(background="#d9d9d9")
+        top.title("Sign Up page")
+        top.configure(background="#cc66ff")
         top.configure(highlightbackground="#d9d9d9")
         top.configure(highlightcolor="black")
 
@@ -123,7 +134,7 @@ class Toplevel1:
         self.Frame1.configure(relief='groove')
         self.Frame1.configure(borderwidth="2")
         self.Frame1.configure(relief='groove')
-        self.Frame1.configure(background="#d9d9d9")
+        self.Frame1.configure(background="#CD5C5C")
         self.Frame1.configure(highlightbackground="#d9d9d9")
         self.Frame1.configure(highlightcolor="#646464")
         self.Frame1.configure(width=455)
@@ -200,7 +211,7 @@ class Toplevel1:
         self.unm.configure(selectbackground="#c4c4c4")
         self.unm.configure(selectforeground="black")
 
-        self.password = tk.Entry(self.Frame1)
+        self.password = tk.Entry(self.Frame1,show="*")
         self.password.place(relx=0.352, rely=0.508,height=20, relwidth=0.36)
         self.password.configure(background="white")
         self.password.configure(disabledforeground="#a3a3a3")
@@ -241,7 +252,7 @@ class Toplevel1:
         self.Label5.place(relx=0.367, rely=0.044, height=71, width=145)
         self.Label5.configure(activebackground="#f9f9f9")
         self.Label5.configure(activeforeground="black")
-        self.Label5.configure(background="#d9d9d9")
+        self.Label5.configure(background="#ffff00")
         self.Label5.configure(disabledforeground="#a3a3a3")
         self.Label5.configure(font="-family {Segoe UI} -size 23 -weight bold -underline 1")
         self.Label5.configure(foreground="#000000")

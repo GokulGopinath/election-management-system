@@ -57,21 +57,33 @@ class Toplevel1:
         db = sqlite3.connect('election.db')
         username = self.Entry1.get()
         password1 = self.Entry2.get()
-        with db:
-            cursor = db.cursor()
-        cursor.execute("SELECT * FROM voter where (u_name=? or password=? )and counter=0",(username,password1,))
-        content = cursor.fetchall()
-        print(content)
-
-        if not content:
-            messagebox.showerror("ERROR", "INVALID USERNAME OR PASSWORD OR YOU HAVE ALREADY VOTED ")
-        else:
-            cursor.execute("update voter set counter=1 where u_name=?",(username,))
-            db.commit()
-            global root
+        global root
+        if not(username) or not(password1):
+            messagebox.showerror("ERROR","Please fillup the details and then submit")
+            
+        elif username=='admin' and password1=='admin@123':
+            
             root.destroy()
-            filename='python vote.py'
+            filename='python admin.py'
             os.system(filename)
+            
+            
+        else:
+            with db:
+                cursor = db.cursor()
+            cursor.execute("SELECT * FROM voter where (u_name=? and password=? )and counter=0",(username,password1,))
+            content = cursor.fetchall()
+            print(content)
+
+            if not content:
+                messagebox.showerror("ERROR", "INVALID USERNAME OR PASSWORD OR YOU HAVE ALREADY VOTED ")
+            else:
+                cursor.execute("update voter set counter=1 where u_name=?",(username,))
+                db.commit()
+                
+                root.destroy()
+                filename='python vote.py'
+                os.system(filename)
         
 
 
@@ -97,15 +109,15 @@ class Toplevel1:
         font9 = "-family {Segoe UI} -size 9"
 
         top.geometry("600x450+340+213")
-        top.title("New Toplevel")
-        top.configure(background="#d9d9d9")
+        top.title("LOGIN page")
+        top.configure(background="#cc66ff")
 
         self.Frame1 = tk.Frame(top)
         self.Frame1.place(relx=0.133, rely=0.2, relheight=0.656, relwidth=0.758)
         self.Frame1.configure(relief='groove')
         self.Frame1.configure(borderwidth="2")
         self.Frame1.configure(relief='groove')
-        self.Frame1.configure(background="#d9d9d9")
+        self.Frame1.configure(background="#CD5C5C")
         self.Frame1.configure(width=455)
 
         self.Label2 = tk.Label(self.Frame1)
@@ -133,7 +145,7 @@ class Toplevel1:
         self.Entry1.configure(foreground="#000000")
         self.Entry1.configure(insertbackground="black")
 
-        self.Entry2 = tk.Entry(self.Frame1)
+        self.Entry2 = tk.Entry(self.Frame1,show='*')
         self.Entry2.place(relx=0.495, rely=0.508,height=20, relwidth=0.36)
         self.Entry2.configure(background="white")
         self.Entry2.configure(disabledforeground="#a3a3a3")
@@ -161,7 +173,7 @@ class Toplevel1:
 
         self.Label1 = tk.Label(top)
         self.Label1.place(relx=0.4, rely=0.044, height=48, width=119)
-        self.Label1.configure(background="#d9d9d9")
+        self.Label1.configure(background="#ffff00")
         self.Label1.configure(disabledforeground="#a3a3a3")
         self.Label1.configure(font=font13)
         self.Label1.configure(foreground="#000000")
